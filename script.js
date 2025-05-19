@@ -99,11 +99,12 @@ updateTimerDisplay();
 
 // --- Motivation Quote ---
 function setRandomQuote() {
-  // Using the Quotable API for random quotes
-  fetch('https://api.quotable.io/random')
-    .then(res => res.json())
+  fetch("https://type.fit/api/quotes")
+    .then(response => response.json())
     .then(data => {
-      document.getElementById('quote-text').textContent = `"${data.content}" — ${data.author}`;
+      const random = Math.floor(Math.random() * data.length);
+      const quote = data[random];
+      document.getElementById('quote-text').textContent = `"${quote.text}" — ${quote.author || "Unknown"}`;
     })
     .catch(() => {
       document.getElementById('quote-text').textContent = '"Could not load quote."';
