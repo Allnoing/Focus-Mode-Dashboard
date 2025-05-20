@@ -97,18 +97,53 @@ document.getElementById('pause').onclick = pauseTimer;
 document.getElementById('reset').onclick = resetTimer;
 updateTimerDisplay();
 
-// --- Motivation Quote ---
-function setRandomQuote() {
-  fetch("https://type.fit/api/quotes")
-    .then(response => response.json())
-    .then(data => {
-      const random = Math.floor(Math.random() * data.length);
-      const quote = data[random];
-      document.getElementById('quote-text').textContent = `"${quote.text}" — ${quote.author || "Unknown"}`;
-    })
-    .catch(() => {
-      document.getElementById('quote-text').textContent = '"Could not load quote."';
-    });
+// --- Motivational Quote speakers---
+const speakers = [
+  "Albert Einstein",
+  "Carl Sagan",
+  "Isaac Newton",
+  "Marie Curie",
+  "Stephen Hawking",
+  "Nikola Tesla",
+  "Alan Turing",
+  "Galileo Galilei",
+  "Ada Lovelace",
+  "Leonardo da Vinci"
+];
+
+// -- Fake Quotes with missing placehoders --
+const quoteTemplates = [
+  "The pursuit of knowledge is the path to ___.",
+  "Without ___, progress is impossible.",
+  "___ is the foundation of all scientific discovery.",
+  "To question ___ is to begin to understand it.",
+  "Only through ___ can we achieve greatness."
+];
+
+// -- fake placeholders --
+const keyWordPool = ["curiosity", "doubt", "observation", "logic", "experiment", "failure", "wonder", "understanding"];
+
+// -- Generate fake quotes --
+function generateFakeQuote() {
+  const person = speakers[Math.floor(Math.random() * speakers.length)];
+  const template = quoteTemplates[Math.floor(Math.random() * quoteTemplates.length)];
+  const concept = keyWordPool[Math.floor(Math.random() * keyWordPool.length)];
+  const quote = template.replace("___", concept);
+  return `"${quote}" — ${person}`;
 }
-document.getElementById('new-quote').onclick = setRandomQuote;
-setRandomQuote();
+
+// Add interval logic for 1.5 seconds before loading the next quote
+let quoteTimeout = null;
+document.getElementById('new-quote').onclick = () => {
+  const quoteText = document.getElementById('quote-text');
+  quoteText.textContent = 'Loading...';
+
+  if (quoteTimeout) clearTimeout(quoteTimeout);
+
+  quoteTimeout = setTimeout(() => {
+    quoteText.textContent = generateFakeQuote();
+  }, 1500);
+};
+
+// -- Show initial quote on load --
+document.getElementById('quote-text').textContent = generateFakeQuote();
