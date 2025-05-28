@@ -1,9 +1,14 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
   background: #121212;
   color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* .dashboard {
@@ -12,14 +17,38 @@ body {
   padding: 2rem;
 } -- Removed, not used in html anymore */
 
-header {
-  text-align: center;
-  margin-bottom: 2rem;
+.header-section.card {
+  width: 100vw;
+  max-width: none;
+  border-radius: 0 0 16px 16px;
+  margin: 0 0 2rem 0;
+  box-sizing: border-box;
+  padding-left: 0;
+  padding-right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-section header {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 #clock {
   font-size: 2rem;
-  margin-top: 0.5rem;
+  margin-top: 0;
+}
+
+#greeting {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
 }
 
 section {
@@ -38,14 +67,32 @@ input, button {
 }
 
 button {
-  background: #1f1f1f;
-  color: white;
+
+  background: linear-gradient(90deg, #2d2d2d 0%, #232526 100%);
+  color: #fff;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 
+    background 0.3s,
+    box-shadow 0.2s,
+    transform 0.1s;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  padding: 0.6rem 1.4rem;
+  outline: none;
 }
 
-button:hover {
-  background: #333;
+button:hover, button:focus {
+  background: linear-gradient(90deg, #3a3a3a 0%, #1a1a1a 100%);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  transform: translateY(-2px) scale(1.03);
+}
+
+button:active {
+  background: #232526;
+  transform: scale(0.98);
 }
 
 ul {
@@ -62,4 +109,25 @@ li {
 
 li span {
   flex: 1;
+  margin-right: 1rem; /* Add spacing between todo text and delete button */
 }
+
+li button {
+  margin-left: auto;    /* Push delete button to the far right */
+  min-width: 70px;      /* Optional: keeps button width consistent */
+}
+
+.card {
+  background: #181818;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  padding: 2rem;
+  margin: 1rem 0;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
