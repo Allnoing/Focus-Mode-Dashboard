@@ -131,3 +131,42 @@ li button {
   align-items: center;
 }
 
+/* Login page styling */
+.login-card {
+  background: #181818;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  padding: 2.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 350px;
+  width: 100%;
+}
+
+.login-card h1 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 6px;
+  border: none;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  background: #232526;
+  color: #fff;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.login-card button {
+  width: 100%;
+  padding: 0.7rem;
+  font-size: 1rem;
+}
+

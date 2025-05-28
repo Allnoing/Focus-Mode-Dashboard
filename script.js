@@ -10,14 +10,15 @@ setInterval(updateClock, 1000);
 updateClock();
 
 // --- Greeting ---
-// Sets a greeting based on the current hour
+// Sets a greeting based on the current hour and user's name
 function updateGreeting() {
   const hour = new Date().getHours();
   let greeting = "Welcome";
   if (hour < 12) greeting = "Good Morning";
   else if (hour < 18) greeting = "Good Afternoon";
   else greeting = "Good Evening";
-  document.getElementById('greeting').textContent = greeting;
+  const name = localStorage.getItem('focusUserName');
+  document.getElementById('greeting').textContent = name ? `${greeting}, ${name}` : greeting;
 }
 updateGreeting();
 
