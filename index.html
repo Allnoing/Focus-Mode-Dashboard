@@ -2,50 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Login | Focus Mode Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Focus Mode Dashboard</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  
 </head>
 <body>
-  <div class="header-section card">
-    <header>
-      <h1 id="greeting">Welcome</h1>
-      <div id="clock">00:00:00</div>
-    </header>
+  <div class="login-card">
+    <h1>Welcome!</h1>
+    <form id="login-form" autocomplete="off">
+      <input type="text" id="username" placeholder="Enter your name" required autofocus>
+      <button type="submit">Enter</button>
+    </form>
   </div>
-
-  <div class="todo-section card">
-    <section class="todo">
-      <h2>To-Do List</h2>
-      <form id="todo-form">
-        <input type="text" id="todo-input" placeholder="What’s your focus today?">
-        <button type="submit">Add</button>
-      </form>
-      <ul id="todo-list"></ul>
-    </section>
-  </div>
-
-  <div class="pomodoro-section card">
-    <section class="pomodoro">
-      <h2>Pomodoro Timer</h2>
-      <div id="timer">25:00</div>
-      <div class="pomodoro-buttons">
-        <button id="start">Start</button>
-        <button id="pause">Pause</button>
-        <button id="reset">Reset</button>
-      </div>
-    </section>
-  </div>
-
-  <div class="quote-section card">
-    <section class="quote">
-      <h2>Motivation</h2>
-      <p id="quote-text">"Loading quote..."</p>
-      <button id="new-quote">New Quote</button>
-    </section>
-  </div>
-
-  <script src="script.js"></script>
+  <script>
+    // On form submit, store name and redirect to dashboard
+    document.getElementById('login-form').onsubmit = function(e) {
+      e.preventDefault();
+      const name = document.getElementById('username').value.trim();
+      if (name) {
+        localStorage.setItem('focusUserName', name);
+        window.location.href = "dashboard.html";
+      }
+    };
+    // If already logged in, skip login
+    if (localStorage.getItem('focusUserName')) {
+      window.location.href = "dashboard.html";
+    }
+  </script>
 </body>
 </html>
